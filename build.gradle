@@ -41,6 +41,11 @@ subprojects {
   }
 }
 
+project(':author-api') {
+  dependencies {
+    implementation project(':shared')
+  }
+}
 
 project(':shared') {
   bootJar {
