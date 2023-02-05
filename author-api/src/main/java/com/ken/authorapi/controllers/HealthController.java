@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping(path = HealthController.BASE_URL)
 public class HealthController {
+
   public static final String BASE_URL = "/health";
 
   @GetMapping

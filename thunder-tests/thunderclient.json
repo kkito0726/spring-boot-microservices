@@ -40,5 +40,85 @@
     "headers": [],
     "params": [],
     "tests": []
+  },
+  {
+    "_id": "c4b91f3c-92bb-4c75-badd-c8cd66f7b1cb",
+    "colId": "d6807397-75d2-4e75-9300-c4251b85c975",
+    "containerId": "c2b8e824-1855-4728-bc84-9d42140bdd0c",
+    "name": "getAuthors",
+    "url": "{{BASE_URL}}/author-service/api/v1/authors",
+    "method": "GET",
+    "sortNum": 40000,
+    "created": "2023-02-05T11:09:55.476Z",
+    "modified": "2023-02-05T11:14:42.886Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "f7f9ec65-8948-49a3-b926-b35bcc465e37",
+    "colId": "d6807397-75d2-4e75-9300-c4251b85c975",
+    "containerId": "c2b8e824-1855-4728-bc84-9d42140bdd0c",
+    "name": "getAuthor",
+    "url": "{{BASE_URL}}/author-service/api/v1/authors/dc0bb59a-6fc4-4053-b993-83b0f9697230",
+    "method": "GET",
+    "sortNum": 50000,
+    "created": "2023-02-05T11:13:00.719Z",
+    "modified": "2023-02-05T12:27:36.331Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "522df981-0c9c-4634-a140-0c7680d3db2c",
+    "colId": "d6807397-75d2-4e75-9300-c4251b85c975",
+    "containerId": "c2b8e824-1855-4728-bc84-9d42140bdd0c",
+    "name": "createAuthor",
+    "url": "{{BASE_URL}}/author-service/api/v1/authors",
+    "method": "POST",
+    "sortNum": 70000,
+    "created": "2023-02-05T11:15:38.597Z",
+    "modified": "2023-02-05T11:16:25.302Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"name\": \"\",\n  \"description\": \"\"\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "89bec158-070a-42e2-a500-82b68aed3770",
+    "colId": "d6807397-75d2-4e75-9300-c4251b85c975",
+    "containerId": "c2b8e824-1855-4728-bc84-9d42140bdd0c",
+    "name": "deleteAuthor",
+    "url": "{{BASE_URL}}/author-service/api/v1/authors/dc0bb59a-6fc4-4053-b993-83b0f9697230",
+    "method": "DELETE",
+    "sortNum": 80000,
+    "created": "2023-02-05T11:16:41.513Z",
+    "modified": "2023-02-05T12:27:47.099Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "f0bb6536-0322-4506-8e5c-0824e009a671",
+    "colId": "d6807397-75d2-4e75-9300-c4251b85c975",
+    "containerId": "c2b8e824-1855-4728-bc84-9d42140bdd0c",
+    "name": "updateAuthor",
+    "url": "{{BASE_URL}}/author-service/api/v1/authors/dc0bb59a-6fc4-4053-b993-83b0f9697230",
+    "method": "PATCH",
+    "sortNum": 90000,
+    "created": "2023-02-05T11:19:05.469Z",
+    "modified": "2023-02-05T12:27:55.052Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"name\": \"\",\n  \"description\": \"\"\n}",
+      "form": []
+    },
+    "tests": []
   }
 ]
