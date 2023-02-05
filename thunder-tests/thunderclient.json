@@ -60,11 +60,11 @@
     "colId": "d6807397-75d2-4e75-9300-c4251b85c975",
     "containerId": "c2b8e824-1855-4728-bc84-9d42140bdd0c",
     "name": "getAuthor",
-    "url": "{{BASE_URL}}/author-service/api/v1/authors/dc0bb59a-6fc4-4053-b993-83b0f9697230",
+    "url": "{{BASE_URL}}/author-service/api/v1/authors/690afa00-46a3-4be2-b9c2-8e641b22eacb",
     "method": "GET",
     "sortNum": 50000,
     "created": "2023-02-05T11:13:00.719Z",
-    "modified": "2023-02-05T12:27:36.331Z",
+    "modified": "2023-02-05T13:16:45.007Z",
     "headers": [],
     "params": [],
     "tests": []
@@ -78,12 +78,12 @@
     "method": "POST",
     "sortNum": 70000,
     "created": "2023-02-05T11:15:38.597Z",
-    "modified": "2023-02-05T11:16:25.302Z",
+    "modified": "2023-02-05T13:16:00.168Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n  \"name\": \"\",\n  \"description\": \"\"\n}",
+      "raw": "{\n  \"name\": \"author 1\",\n  \"description\": \"nice author 1\"\n}",
       "form": []
     },
     "tests": []
@@ -93,11 +93,11 @@
     "colId": "d6807397-75d2-4e75-9300-c4251b85c975",
     "containerId": "c2b8e824-1855-4728-bc84-9d42140bdd0c",
     "name": "deleteAuthor",
-    "url": "{{BASE_URL}}/author-service/api/v1/authors/dc0bb59a-6fc4-4053-b993-83b0f9697230",
+    "url": "{{BASE_URL}}/author-service/api/v1/authors/690afa00-46a3-4be2-b9c2-8e641b22eacb",
     "method": "DELETE",
     "sortNum": 80000,
     "created": "2023-02-05T11:16:41.513Z",
-    "modified": "2023-02-05T12:27:47.099Z",
+    "modified": "2023-02-05T13:17:45.548Z",
     "headers": [],
     "params": [],
     "tests": []
@@ -107,16 +107,16 @@
     "colId": "d6807397-75d2-4e75-9300-c4251b85c975",
     "containerId": "c2b8e824-1855-4728-bc84-9d42140bdd0c",
     "name": "updateAuthor",
-    "url": "{{BASE_URL}}/author-service/api/v1/authors/dc0bb59a-6fc4-4053-b993-83b0f9697230",
+    "url": "{{BASE_URL}}/author-service/api/v1/authors/690afa00-46a3-4be2-b9c2-8e641b22eacb",
     "method": "PATCH",
     "sortNum": 90000,
     "created": "2023-02-05T11:19:05.469Z",
-    "modified": "2023-02-05T12:27:55.052Z",
+    "modified": "2023-02-05T13:17:32.314Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n  \"name\": \"\",\n  \"description\": \"\"\n}",
+      "raw": "{\n  \"name\": \"author 1 updated\",\n  \"description\": \"nice1\"\n}",
       "form": []
     },
     "tests": []
