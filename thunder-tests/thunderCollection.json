@@ -1,0 +1,36 @@
+[
+  {
+    "_id": "d6807397-75d2-4e75-9300-c4251b85c975",
+    "colName": "book database",
+    "created": "2023-02-05T06:11:57.323Z",
+    "sortNum": 10000,
+    "folders": [
+      {
+        "_id": "c2b8e824-1855-4728-bc84-9d42140bdd0c",
+        "name": "author api",
+        "containerId": "",
+        "created": "2023-02-05T06:12:12.486Z",
+        "sortNum": 10000
+      },
+      {
+        "_id": "b383e5b0-6c33-41c4-b548-70b366858483",
+        "name": "book api",
+        "containerId": "",
+        "created": "2023-02-05T06:12:21.864Z",
+        "sortNum": 20000
+      },
+      {
+        "_id": "2c96ed16-7c57-447b-b005-4e95b56bcea6",
+        "name": "comment api",
+        "containerId": "",
+        "created": "2023-02-05T06:12:32.160Z",
+        "sortNum": 30000
+      }
+    ],
+    "settings": {
+      "headers": [],
+      "tests": [],
+      "envId": "207f80c6-4cfd-420f-b5ca-ede4bcf7104a"
+    }
+  }
+]
