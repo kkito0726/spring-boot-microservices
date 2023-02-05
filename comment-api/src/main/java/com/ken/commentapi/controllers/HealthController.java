@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class HealthController {
   public static final String BASE_URL = "/health";
 
-  @GetMapping
+  @GetMapping("")
   public ResponseEntity<String> getHealth() {
     return ResponseEntity.ok("Comment API is up and running!");
   }
