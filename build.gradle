@@ -52,6 +52,11 @@ project(':author-api') {
     implementation project(':shared')
   }
 }
+project(':book-api') {
+  dependencies {
+    implementation project(':shared')
+  }
+}
 
 project(':shared') {
   bootJar {

@@ -120,5 +120,85 @@
       "form": []
     },
     "tests": []
+  },
+  {
+    "_id": "a6ad963a-5086-40a3-bdee-2d911be7a9bc",
+    "colId": "d6807397-75d2-4e75-9300-c4251b85c975",
+    "containerId": "b383e5b0-6c33-41c4-b548-70b366858483",
+    "name": "getBooks",
+    "url": "{{BASE_URL}}/book-service/api/v1/books",
+    "method": "GET",
+    "sortNum": 100000,
+    "created": "2023-02-06T14:44:33.822Z",
+    "modified": "2023-02-06T14:45:52.196Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "6048a444-e634-45c6-8e65-7cbc160b97b0",
+    "colId": "d6807397-75d2-4e75-9300-c4251b85c975",
+    "containerId": "b383e5b0-6c33-41c4-b548-70b366858483",
+    "name": "deleteBook",
+    "url": "{{BASE_URL}}/book-service/api/v1/books/ee156014-c837-470c-aec6-16877a652f1f",
+    "method": "DELETE",
+    "sortNum": 110000,
+    "created": "2023-02-06T14:46:01.048Z",
+    "modified": "2023-02-06T14:55:23.922Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "84a5750e-b11d-411c-a504-cca9645efba2",
+    "colId": "d6807397-75d2-4e75-9300-c4251b85c975",
+    "containerId": "b383e5b0-6c33-41c4-b548-70b366858483",
+    "name": "createBook",
+    "url": "{{BASE_URL}}/book-service/api/v1/books",
+    "method": "POST",
+    "sortNum": 105000,
+    "created": "2023-02-06T14:46:40.510Z",
+    "modified": "2023-02-06T14:49:22.608Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"title\": \"Python超入門 2\",\n  \"description\": \"わかりやすい 2\"\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "232376fe-d361-4e13-ab55-99de1a5cfbfe",
+    "colId": "d6807397-75d2-4e75-9300-c4251b85c975",
+    "containerId": "b383e5b0-6c33-41c4-b548-70b366858483",
+    "name": "getBook",
+    "url": "{{BASE_URL}}/book-service/api/v1/books/c8ea203f-c5f3-456f-9327-ba76225b8aee",
+    "method": "GET",
+    "sortNum": 120000,
+    "created": "2023-02-06T14:50:55.936Z",
+    "modified": "2023-02-06T15:08:59.307Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "366b7980-6c26-48f5-b4e9-933ffbe42ff8",
+    "colId": "d6807397-75d2-4e75-9300-c4251b85c975",
+    "containerId": "b383e5b0-6c33-41c4-b548-70b366858483",
+    "name": "updateBook",
+    "url": "{{BASE_URL}}/book-service/api/v1/books/c8ea203f-c5f3-456f-9327-ba76225b8aee",
+    "method": "PATCH",
+    "sortNum": 115000,
+    "created": "2023-02-06T14:51:45.731Z",
+    "modified": "2023-02-06T15:09:12.295Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"title\": \"Java 超入門\"\n}",
+      "form": []
+    },
+    "tests": []
   }
 ]
