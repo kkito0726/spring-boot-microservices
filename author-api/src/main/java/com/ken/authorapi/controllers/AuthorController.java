@@ -46,7 +46,7 @@ public class AuthorController {
   public ResponseEntity<AuthorDto> createAuthor(
     @Valid @RequestBody CreateAuthorDto dto
   ) {
-    AuthorDto newAuthor = _authorService.creAuthorDto(dto);
+    AuthorDto newAuthor = _authorService.createAuthorDto(dto);
     URI location = ServletUriComponentsBuilder
       .fromCurrentRequest()
       .path("/{id}")

@@ -11,7 +11,7 @@ public interface AuthorService {
 
   public AuthorDto getAuthor(UUID id);
 
-  public AuthorDto creAuthorDto(CreateAuthorDto dto);
+  public AuthorDto createAuthorDto(CreateAuthorDto dto);
 
   public void deleteAuthor(UUID id);
 

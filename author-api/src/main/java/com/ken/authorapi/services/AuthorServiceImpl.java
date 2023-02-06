@@ -46,7 +46,7 @@ public class AuthorServiceImpl implements AuthorService {
   }
 
   @Override
-  public AuthorDto creAuthorDto(CreateAuthorDto dto) {
+  public AuthorDto createAuthorDto(CreateAuthorDto dto) {
     Author newAuthor = new Author();
     newAuthor.setName(dto.getName());
     newAuthor.setDescription(dto.getDescription());
