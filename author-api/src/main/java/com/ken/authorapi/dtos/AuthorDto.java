@@ -1,7 +1,6 @@
 package com.ken.authorapi.dtos;
 
 import com.ken.shared.models.DtoBase;
-import java.time.LocalDateTime;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
