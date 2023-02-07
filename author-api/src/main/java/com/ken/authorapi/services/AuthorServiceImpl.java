@@ -3,6 +3,7 @@ package com.ken.authorapi.services;
 import com.ken.authorapi.dtos.AuthorDto;
 import com.ken.authorapi.dtos.CreateAuthorDto;
 import com.ken.authorapi.dtos.UpdateAuthorDto;
+import com.ken.authorapi.mappers.AuthorMapper;
 import com.ken.authorapi.models.Author;
 import com.ken.authorapi.repositories.AuthorRepository;
 import com.ken.shared.errors.NotFoundException;
@@ -18,22 +19,14 @@ import org.springframework.stereotype.Service;
 public class AuthorServiceImpl implements AuthorService {
 
   private final AuthorRepository _authorRepository;
+  private final AuthorMapper _authorMapper;
 
   @Override
   public List<AuthorDto> getAuthors() {
     List<Author> authors = _authorRepository.findAll();
     List<AuthorDto> authorDtos = authors
       .stream()
-      .map(authorItem ->
-        (AuthorDto) AuthorDto
-          .builder()
-          .id(authorItem.getId())
-          .name(authorItem.getName())
-          .description(authorItem.getDescription())
-          .createdAt(authorItem.getCreatedAt())
-          .updatedAt(authorItem.getUpdatedAt())
-          .build()
-      )
+      .map(authorItem -> _authorMapper.toDto(authorItem))
       .toList();
     return authorDtos;
   }
@@ -41,32 +34,17 @@ public class AuthorServiceImpl implements AuthorService {
   @Override
   public AuthorDto getAuthor(UUID id) {
     Author author = _findAuthorById(id);
-    AuthorDto authorDto = AuthorDto
-      .builder()
-      .id(author.getId())
-      .name(author.getName())
-      .description(author.getDescription())
-      .createdAt(author.getCreatedAt())
-      .updatedAt(author.getUpdatedAt())
-      .build();
+    AuthorDto authorDto = _authorMapper.toDto(author);
 
     return authorDto;
   }
 
   @Override
   public AuthorDto createAuthorDto(CreateAuthorDto dto) {
-    Author newAuthor = new Author();
-    newAuthor.setName(dto.getName());
-    newAuthor.setDescription(dto.getDescription());
+    Author newAuthor = new Author(dto.getName(), dto.getDescription());
     Author savedAuthor = _authorRepository.save(newAuthor);
-    return AuthorDto
-      .builder()
-      .id(savedAuthor.getId())
-      .name(savedAuthor.getName())
-      .description(savedAuthor.getDescription())
-      .createdAt(savedAuthor.getCreatedAt())
-      .updatedAt(savedAuthor.getUpdatedAt())
-      .build();
+
+    return _authorMapper.toDto(savedAuthor);
   }
 
   @Override

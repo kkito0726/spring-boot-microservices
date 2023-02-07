@@ -3,6 +3,7 @@ package com.ken.bookapi.services;
 import com.ken.bookapi.dtos.BookDto;
 import com.ken.bookapi.dtos.CreateBookDto;
 import com.ken.bookapi.dtos.UpdateBookDto;
+import com.ken.bookapi.mappers.BookMapper;
 import com.ken.bookapi.models.Book;
 import com.ken.bookapi.repositories.BookRepository;
 import com.ken.shared.errors.NotFoundException;
@@ -18,22 +19,14 @@ import org.springframework.stereotype.Service;
 public class BookServiceImpl implements BookService {
 
   private final BookRepository _bookRepository;
+  private final BookMapper _bookMapper;
 
   @Override
   public List<BookDto> getBooks() {
     List<Book> books = _bookRepository.findAll();
     List<BookDto> bookDtos = books
       .stream()
-      .map(book ->
-        (BookDto) BookDto
-          .builder()
-          .id(book.getId())
-          .title(book.getTitle())
-          .description(book.getDescription())
-          .createdAt(book.getCreatedAt())
-          .updatedAt(book.getUpdatedAt())
-          .build()
-      )
+      .map(book -> _bookMapper.toDto(book))
       .toList();
     return bookDtos;
   }
@@ -41,32 +34,16 @@ public class BookServiceImpl implements BookService {
   @Override
   public BookDto getBook(UUID id) {
     Book book = _findBookId(id);
-    BookDto bookDto = BookDto
-      .builder()
-      .id(book.getId())
-      .title(book.getTitle())
-      .description(book.getDescription())
-      .createdAt(book.getCreatedAt())
-      .updatedAt(book.getUpdatedAt())
-      .build();
+    BookDto bookDto = _bookMapper.toDto(book);
 
     return bookDto;
   }
 
   @Override
   public BookDto createBook(CreateBookDto dto) {
-    Book newBook = new Book();
-    newBook.setTitle(dto.getTitle());
-    newBook.setDescription(dto.getDescription());
+    Book newBook = new Book(dto.getTitle(), dto.getDescription());
     Book savedBook = _bookRepository.save(newBook);
-    return BookDto
-      .builder()
-      .id(savedBook.getId())
-      .title(savedBook.getTitle())
-      .description(savedBook.getDescription())
-      .createdAt(savedBook.getCreatedAt())
-      .updatedAt(savedBook.getUpdatedAt())
-      .build();
+    return _bookMapper.toDto(savedBook);
   }
 
   @Override
