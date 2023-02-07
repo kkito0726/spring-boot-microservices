@@ -1,7 +1,6 @@
 package com.ken.bookapi.dtos;
 
 import com.ken.shared.models.DtoBase;
-import java.util.UUID;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;

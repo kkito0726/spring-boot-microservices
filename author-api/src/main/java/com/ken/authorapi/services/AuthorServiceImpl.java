@@ -5,6 +5,7 @@ import com.ken.authorapi.dtos.CreateAuthorDto;
 import com.ken.authorapi.dtos.UpdateAuthorDto;
 import com.ken.authorapi.models.Author;
 import com.ken.authorapi.repositories.AuthorRepository;
+import com.ken.shared.errors.NotFoundException;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -93,7 +94,7 @@ public class AuthorServiceImpl implements AuthorService {
     Optional<Author> result = _authorRepository.findById(id);
 
     if (result.isEmpty()) {
-      throw new RuntimeException("Not found with this ID: " + id);
+      throw new NotFoundException("Not found with this ID: " + id);
     }
 
     return result.get();

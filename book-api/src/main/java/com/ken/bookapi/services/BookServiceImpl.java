@@ -5,6 +5,7 @@ import com.ken.bookapi.dtos.CreateBookDto;
 import com.ken.bookapi.dtos.UpdateBookDto;
 import com.ken.bookapi.models.Book;
 import com.ken.bookapi.repositories.BookRepository;
+import com.ken.shared.errors.NotFoundException;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -92,7 +93,7 @@ public class BookServiceImpl implements BookService {
   private Book _findBookId(UUID id) {
     Optional<Book> result = _bookRepository.findById(id);
     if (result.isEmpty()) {
-      throw new RuntimeException("Not found with this ID: " + id);
+      throw new NotFoundException("Not found with this ID: " + id);
     }
 
     return result.get();
