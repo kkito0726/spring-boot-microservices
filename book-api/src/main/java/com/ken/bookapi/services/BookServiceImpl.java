@@ -24,7 +24,14 @@ public class BookServiceImpl implements BookService {
     List<BookDto> bookDtos = books
       .stream()
       .map(book ->
-        new BookDto(book.getId(), book.getTitle(), book.getDescription())
+        (BookDto) BookDto
+          .builder()
+          .id(book.getId())
+          .title(book.getTitle())
+          .description(book.getDescription())
+          .createdAt(book.getCreatedAt())
+          .updatedAt(book.getUpdatedAt())
+          .build()
       )
       .toList();
     return bookDtos;
@@ -33,11 +40,15 @@ public class BookServiceImpl implements BookService {
   @Override
   public BookDto getBook(UUID id) {
     Book book = _findBookId(id);
-    BookDto bookDto = new BookDto(
-      book.getId(),
-      book.getTitle(),
-      book.getDescription()
-    );
+    BookDto bookDto = BookDto
+      .builder()
+      .id(book.getId())
+      .title(book.getTitle())
+      .description(book.getDescription())
+      .createdAt(book.getCreatedAt())
+      .updatedAt(book.getUpdatedAt())
+      .build();
+
     return bookDto;
   }
 
@@ -47,11 +58,14 @@ public class BookServiceImpl implements BookService {
     newBook.setTitle(dto.getTitle());
     newBook.setDescription(dto.getDescription());
     Book savedBook = _bookRepository.save(newBook);
-    return new BookDto(
-      savedBook.getId(),
-      savedBook.getTitle(),
-      savedBook.getDescription()
-    );
+    return BookDto
+      .builder()
+      .id(savedBook.getId())
+      .title(savedBook.getTitle())
+      .description(savedBook.getDescription())
+      .createdAt(savedBook.getCreatedAt())
+      .updatedAt(savedBook.getUpdatedAt())
+      .build();
   }
 
   @Override

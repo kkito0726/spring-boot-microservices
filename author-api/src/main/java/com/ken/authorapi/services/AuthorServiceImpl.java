@@ -24,13 +24,14 @@ public class AuthorServiceImpl implements AuthorService {
     List<AuthorDto> authorDtos = authors
       .stream()
       .map(authorItem ->
-        new AuthorDto(
-          authorItem.getId(),
-          authorItem.getName(),
-          authorItem.getDescription(),
-          authorItem.getCreatedAt(),
-          authorItem.getUpdatedAt()
-        )
+        (AuthorDto) AuthorDto
+          .builder()
+          .id(authorItem.getId())
+          .name(authorItem.getName())
+          .description(authorItem.getDescription())
+          .createdAt(authorItem.getCreatedAt())
+          .updatedAt(authorItem.getUpdatedAt())
+          .build()
       )
       .toList();
     return authorDtos;
@@ -39,13 +40,15 @@ public class AuthorServiceImpl implements AuthorService {
   @Override
   public AuthorDto getAuthor(UUID id) {
     Author author = _findAuthorById(id);
-    AuthorDto authorDto = new AuthorDto(
-      author.getId(),
-      author.getName(),
-      author.getDescription(),
-      author.getCreatedAt(),
-      author.getUpdatedAt()
-    );
+    AuthorDto authorDto = AuthorDto
+      .builder()
+      .id(author.getId())
+      .name(author.getName())
+      .description(author.getDescription())
+      .createdAt(author.getCreatedAt())
+      .updatedAt(author.getUpdatedAt())
+      .build();
+
     return authorDto;
   }
 
@@ -55,13 +58,14 @@ public class AuthorServiceImpl implements AuthorService {
     newAuthor.setName(dto.getName());
     newAuthor.setDescription(dto.getDescription());
     Author savedAuthor = _authorRepository.save(newAuthor);
-    return new AuthorDto(
-      savedAuthor.getId(),
-      savedAuthor.getName(),
-      savedAuthor.getDescription(),
-      savedAuthor.getCreatedAt(),
-      savedAuthor.getUpdatedAt()
-    );
+    return AuthorDto
+      .builder()
+      .id(savedAuthor.getId())
+      .name(savedAuthor.getName())
+      .description(savedAuthor.getDescription())
+      .createdAt(savedAuthor.getCreatedAt())
+      .updatedAt(savedAuthor.getUpdatedAt())
+      .build();
   }
 
   @Override
