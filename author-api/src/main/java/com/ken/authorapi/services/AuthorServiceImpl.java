@@ -27,7 +27,9 @@ public class AuthorServiceImpl implements AuthorService {
         new AuthorDto(
           authorItem.getId(),
           authorItem.getName(),
-          authorItem.getDescription()
+          authorItem.getDescription(),
+          authorItem.getCreatedAt(),
+          authorItem.getUpdatedAt()
         )
       )
       .toList();
@@ -40,7 +42,9 @@ public class AuthorServiceImpl implements AuthorService {
     AuthorDto authorDto = new AuthorDto(
       author.getId(),
       author.getName(),
-      author.getDescription()
+      author.getDescription(),
+      author.getCreatedAt(),
+      author.getUpdatedAt()
     );
     return authorDto;
   }
@@ -54,7 +58,9 @@ public class AuthorServiceImpl implements AuthorService {
     return new AuthorDto(
       savedAuthor.getId(),
       savedAuthor.getName(),
-      savedAuthor.getDescription()
+      savedAuthor.getDescription(),
+      savedAuthor.getCreatedAt(),
+      savedAuthor.getUpdatedAt()
     );
   }
 

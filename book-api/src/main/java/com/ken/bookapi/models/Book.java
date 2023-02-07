@@ -1,37 +1,23 @@
 package com.ken.bookapi.models;
 
-import java.util.Objects;
-import java.util.UUID;
+import com.ken.shared.models.EntityBase;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.PrePersist;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.Type;
 
 @Entity
 @Data
+@EqualsAndHashCode(callSuper = true)
 @AllArgsConstructor
 @NoArgsConstructor
-public class Book {
-
-  @Id
-  @Column(name = "id")
-  @Type(type = "uuid-char")
-  private UUID id;
+public class Book extends EntityBase {
 
   @Column(name = "title", nullable = false)
   private String title;
 
   @Column(name = "description", nullable = false)
   private String description;
-
-  @PrePersist
-  protected void PrePersist() {
-    if (Objects.isNull(this.id)) {
-      this.id = UUID.randomUUID();
-    }
-  }
 }
