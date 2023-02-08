@@ -9,13 +9,13 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Slf4j
-public class AuthorCreatedEventListener {
+public class AuthorDeletedEventListener {
 
-  @RabbitListener(queues = { RabbitMQConfig.QUEUE_AUTHOR_CREATED })
+  @RabbitListener(queues = { RabbitMQConfig.QUEUE_AUTHOR_DELETED })
   public void handleMessage(CustomMessage<AuthorEventDto> message) {
     log.info(
       "{} got triggered. got a message: {}",
-      AuthorCreatedEventListener.class,
+      AuthorDeletedEventListener.class,
       message.toString()
     );
   }

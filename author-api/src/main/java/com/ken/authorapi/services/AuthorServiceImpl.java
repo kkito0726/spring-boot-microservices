@@ -7,7 +7,10 @@ import com.ken.authorapi.mappers.AuthorMapper;
 import com.ken.authorapi.models.Author;
 import com.ken.authorapi.repositories.AuthorRepository;
 import com.ken.shared.constants.RabbitMQKeys;
+import com.ken.shared.domein.AuthorEventDto;
 import com.ken.shared.errors.NotFoundException;
+import com.ken.shared.models.CustomMessage;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -46,10 +49,16 @@ public class AuthorServiceImpl implements AuthorService {
   public AuthorDto createAuthorDto(CreateAuthorDto dto) {
     Author newAuthor = new Author(dto.getName(), dto.getDescription());
     Author savedAuthor = _authorRepository.save(newAuthor);
+
+    CustomMessage<AuthorEventDto> message = new CustomMessage<>();
+    message.setMessageDate(LocalDateTime.now());
+    message.setMessageId(UUID.randomUUID());
+    message.setPayload(_authorMapper.toEventDto(savedAuthor));
+
     _template.convertAndSend(
       RabbitMQKeys.AUTHOR_CREATED_EXCHANGE,
       null,
-      savedAuthor
+      message
     );
 
     return _authorMapper.toDto(savedAuthor);
@@ -59,6 +68,17 @@ public class AuthorServiceImpl implements AuthorService {
   public void deleteAuthor(UUID id) {
     Author author = _findAuthorById(id);
     _authorRepository.delete(author);
+
+    CustomMessage<AuthorEventDto> message = new CustomMessage<>();
+    message.setMessageDate(LocalDateTime.now());
+    message.setMessageId(UUID.randomUUID());
+    message.setPayload(_authorMapper.toEventDto(author));
+
+    _template.convertAndSend(
+      RabbitMQKeys.AUTHOR_DELETED_EXCHANGE,
+      null,
+      message
+    );
   }
 
   @Override
@@ -74,6 +94,17 @@ public class AuthorServiceImpl implements AuthorService {
     }
 
     _authorRepository.save(found);
+
+    CustomMessage<AuthorEventDto> message = new CustomMessage<>();
+    message.setMessageDate(LocalDateTime.now());
+    message.setMessageId(UUID.randomUUID());
+    message.setPayload(_authorMapper.toEventDto(found));
+
+    _template.convertAndSend(
+      RabbitMQKeys.AUTHOR_UPDATE_EXCHANGE,
+      null,
+      message
+    );
   }
 
   private Author _findAuthorById(UUID id) {

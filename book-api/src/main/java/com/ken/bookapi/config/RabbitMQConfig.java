@@ -17,7 +17,14 @@ public class RabbitMQConfig {
   public static final String QUEUE_AUTHOR_CREATED =
     "book-api.message.queue.author.created";
 
-  // consumer
+  public static final String QUEUE_AUTHOR_UPDATED =
+    "book-api.message.queue.author.updated";
+
+  public static final String QUEUE_AUTHOR_DELETED =
+    "book-api.message.queue.author.deleted";
+
+  // ---------- consumer ----------
+  // author create event
   @Bean
   public Queue authorCreatedQueue() {
     return new Queue(QUEUE_AUTHOR_CREATED);
@@ -34,6 +41,44 @@ public class RabbitMQConfig {
     FanoutExchange authorCreatedExchange
   ) {
     return BindingBuilder.bind(authorCreatedQueue).to(authorCreatedExchange);
+  }
+
+  // author updated event
+  @Bean
+  public Queue authorUpdatedQueue() {
+    return new Queue(QUEUE_AUTHOR_UPDATED);
+  }
+
+  @Bean
+  public FanoutExchange authorUpdatedExchange() {
+    return new FanoutExchange(RabbitMQKeys.AUTHOR_UPDATE_EXCHANGE);
+  }
+
+  @Bean
+  public Binding authorUpdatedBinding(
+    Queue authorUpdatedQueue,
+    FanoutExchange authorUpdatedExchange
+  ) {
+    return BindingBuilder.bind(authorUpdatedQueue).to(authorUpdatedExchange);
+  }
+
+  // author deleted event
+  @Bean
+  public Queue authorDeletedQueue() {
+    return new Queue(QUEUE_AUTHOR_DELETED);
+  }
+
+  @Bean
+  public FanoutExchange authorDeletedExchange() {
+    return new FanoutExchange(RabbitMQKeys.AUTHOR_DELETED_EXCHANGE);
+  }
+
+  @Bean
+  public Binding authorDeletedBinding(
+    Queue authorDeletedQueue,
+    FanoutExchange authorDeletedExchange
+  ) {
+    return BindingBuilder.bind(authorDeletedQueue).to(authorDeletedExchange);
   }
 
   @Bean
