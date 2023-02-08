@@ -6,12 +6,14 @@ import com.ken.authorapi.dtos.UpdateAuthorDto;
 import com.ken.authorapi.mappers.AuthorMapper;
 import com.ken.authorapi.models.Author;
 import com.ken.authorapi.repositories.AuthorRepository;
+import com.ken.shared.constants.RabbitMQKeys;
 import com.ken.shared.errors.NotFoundException;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.UUID;
 import lombok.RequiredArgsConstructor;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -20,6 +22,7 @@ public class AuthorServiceImpl implements AuthorService {
 
   private final AuthorRepository _authorRepository;
   private final AuthorMapper _authorMapper;
+  private final RabbitTemplate _template;
 
   @Override
   public List<AuthorDto> getAuthors() {
@@ -43,6 +46,11 @@ public class AuthorServiceImpl implements AuthorService {
   public AuthorDto createAuthorDto(CreateAuthorDto dto) {
     Author newAuthor = new Author(dto.getName(), dto.getDescription());
     Author savedAuthor = _authorRepository.save(newAuthor);
+    _template.convertAndSend(
+      RabbitMQKeys.AUTHOR_CREATED_EXCHANGE,
+      null,
+      savedAuthor
+    );
 
     return _authorMapper.toDto(savedAuthor);
   }
