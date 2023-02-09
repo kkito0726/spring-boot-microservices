@@ -1,10 +1,14 @@
 package com.ken.bookapi.services;
 
+import com.ken.bookapi.dtos.AuthorDto;
 import com.ken.bookapi.dtos.BookDto;
 import com.ken.bookapi.dtos.CreateBookDto;
 import com.ken.bookapi.dtos.UpdateBookDto;
+import com.ken.bookapi.mappers.AuthorMapper;
 import com.ken.bookapi.mappers.BookMapper;
+import com.ken.bookapi.models.Author;
 import com.ken.bookapi.models.Book;
+import com.ken.bookapi.repositories.AuthorRepository;
 import com.ken.bookapi.repositories.BookRepository;
 import com.ken.shared.errors.NotFoundException;
 import java.util.List;
@@ -20,6 +24,8 @@ public class BookServiceImpl implements BookService {
 
   private final BookRepository _bookRepository;
   private final BookMapper _bookMapper;
+  private final AuthorRepository _authorRepository;
+  private final AuthorMapper _authorMapper;
 
   @Override
   public List<BookDto> getBooks() {
@@ -34,14 +40,26 @@ public class BookServiceImpl implements BookService {
   @Override
   public BookDto getBook(UUID id) {
     Book book = _findBookId(id);
+    List<Author> existingAuthors = _authorRepository.findAllById(
+      book.getAuthors()
+    );
+    List<AuthorDto> authorDtos = existingAuthors
+      .stream()
+      .map(authorItem -> _authorMapper.toDto(authorItem))
+      .toList();
     BookDto bookDto = _bookMapper.toDto(book);
+    bookDto.setAuthors(authorDtos);
 
     return bookDto;
   }
 
   @Override
   public BookDto createBook(CreateBookDto dto) {
-    Book newBook = new Book(dto.getTitle(), dto.getDescription());
+    Book newBook = new Book(
+      dto.getTitle(),
+      dto.getDescription(),
+      dto.getAuthors()
+    );
     Book savedBook = _bookRepository.save(newBook);
     return _bookMapper.toDto(savedBook);
   }
