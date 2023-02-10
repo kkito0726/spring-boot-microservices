@@ -10,12 +10,17 @@ import com.ken.bookapi.models.Author;
 import com.ken.bookapi.models.Book;
 import com.ken.bookapi.repositories.AuthorRepository;
 import com.ken.bookapi.repositories.BookRepository;
+import com.ken.shared.constants.RabbitMQKeys;
+import com.ken.shared.domein.BookEventDto;
 import com.ken.shared.errors.NotFoundException;
+import com.ken.shared.models.CustomMessage;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.UUID;
 import lombok.RequiredArgsConstructor;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -24,6 +29,7 @@ public class BookServiceImpl implements BookService {
 
   private final BookRepository _bookRepository;
   private final BookMapper _bookMapper;
+  private final RabbitTemplate _template;
   private final AuthorRepository _authorRepository;
   private final AuthorMapper _authorMapper;
 
@@ -61,6 +67,11 @@ public class BookServiceImpl implements BookService {
       dto.getAuthors()
     );
     Book savedBook = _bookRepository.save(newBook);
+    CustomMessage<BookEventDto> message = new CustomMessage<>();
+    message.setMessageId(UUID.randomUUID());
+    message.setMessageDate(LocalDateTime.now());
+    message.setPayload(_bookMapper.toEventDto(savedBook));
+    _template.convertAndSend(RabbitMQKeys.BOOK_CREATED_EXCHANGE, null, message);
     return _bookMapper.toDto(savedBook);
   }
 
@@ -68,6 +79,13 @@ public class BookServiceImpl implements BookService {
   public void deleteBook(UUID id) {
     Book book = _findBookId(id);
     _bookRepository.delete(book);
+
+    CustomMessage<BookEventDto> message = new CustomMessage<>();
+    message.setMessageId(UUID.randomUUID());
+    message.setMessageDate(LocalDateTime.now());
+    message.setPayload(_bookMapper.toEventDto(book));
+
+    _template.convertAndSend(RabbitMQKeys.BOOK_DELETED_EXCHANGE, null, message);
   }
 
   @Override
@@ -83,6 +101,13 @@ public class BookServiceImpl implements BookService {
     }
 
     _bookRepository.save(found);
+
+    CustomMessage<BookEventDto> message = new CustomMessage<>();
+    message.setMessageId(UUID.randomUUID());
+    message.setMessageDate(LocalDateTime.now());
+    message.setPayload(_bookMapper.toEventDto(found));
+
+    _template.convertAndSend(RabbitMQKeys.BOOK_UPDATED_EXCHANGE, null, message);
   }
 
   private Book _findBookId(UUID id) {

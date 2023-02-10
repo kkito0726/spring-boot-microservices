@@ -47,7 +47,11 @@ public class AuthorServiceImpl implements AuthorService {
 
   @Override
   public AuthorDto createAuthorDto(CreateAuthorDto dto) {
-    Author newAuthor = new Author(dto.getName(), dto.getDescription());
+    Author newAuthor = new Author(
+      dto.getName(),
+      dto.getDescription(),
+      dto.getBooks()
+    );
     Author savedAuthor = _authorRepository.save(newAuthor);
 
     CustomMessage<AuthorEventDto> message = new CustomMessage<>();

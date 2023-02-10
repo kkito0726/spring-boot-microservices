@@ -60,11 +60,11 @@
     "colId": "d6807397-75d2-4e75-9300-c4251b85c975",
     "containerId": "c2b8e824-1855-4728-bc84-9d42140bdd0c",
     "name": "getAuthor",
-    "url": "{{BASE_URL}}/author-service/api/v1/authors/87583c29-7005-4c82-ba62-81cc5a72f126",
+    "url": "{{BASE_URL}}/author-service/api/v1/authors/3fb25ad2-b1c3-4979-a086-aafde8f89147",
     "method": "GET",
     "sortNum": 50000,
     "created": "2023-02-05T11:13:00.719Z",
-    "modified": "2023-02-07T05:20:19.533Z",
+    "modified": "2023-02-10T13:24:07.201Z",
     "headers": [],
     "params": [],
     "tests": []
@@ -158,12 +158,12 @@
     "method": "POST",
     "sortNum": 105000,
     "created": "2023-02-06T14:46:40.510Z",
-    "modified": "2023-02-09T03:58:59.924Z",
+    "modified": "2023-02-10T13:22:21.665Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n  \"title\": \"Python超入門 4\",\n  \"description\": \"わかりやすい 3\",\n  \"authors\": [\n    \"90dcad85-83d1-474e-bd5d-a1f6b09384da\"\n    ]\n}",
+      "raw": "{\n  \"title\": \"Python超入門 4\",\n  \"description\": \"わかりやすい 3\",\n  \"authors\": [\n    \"3fb25ad2-b1c3-4979-a086-aafde8f89147\"\n    ]\n}",
       "form": []
     },
     "tests": []

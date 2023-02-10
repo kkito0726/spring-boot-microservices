@@ -10,9 +10,9 @@ import lombok.ToString;
 @Data
 @EqualsAndHashCode(callSuper = true)
 @ToString(callSuper = true)
-public class AuthorEventDto extends DtoBase {
+public class BookEventDto extends DtoBase {
 
-  private String name;
+  private String title;
   private String description;
-  private List<UUID> Books;
+  private List<UUID> authors;
 }

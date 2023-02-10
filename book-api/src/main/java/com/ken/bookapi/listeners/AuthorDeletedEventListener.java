@@ -10,7 +10,6 @@ import com.ken.shared.domein.AuthorEventDto;
 import com.ken.shared.models.CustomMessage;
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
@@ -48,13 +47,7 @@ public class AuthorDeletedEventListener {
 
     List<Book> books = _bookRepository.findAllByAuthors(authorEventDto.getId());
     for (Book bookItem : books) {
-      List<UUID> filtered = bookItem
-        .getAuthors()
-        .stream()
-        .filter(authorId -> !authorId.equals(authorEventDto.getId()))
-        .toList();
-
-      bookItem.setAuthors((filtered));
+      bookItem.getAuthors().remove(authorEventDto.getId());
     }
   }
 }
