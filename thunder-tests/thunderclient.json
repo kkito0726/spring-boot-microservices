@@ -158,12 +158,12 @@
     "method": "POST",
     "sortNum": 105000,
     "created": "2023-02-06T14:46:40.510Z",
-    "modified": "2023-02-10T13:22:21.665Z",
+    "modified": "2023-02-10T13:56:12.388Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n  \"title\": \"Python超入門 4\",\n  \"description\": \"わかりやすい 3\",\n  \"authors\": [\n    \"3fb25ad2-b1c3-4979-a086-aafde8f89147\"\n    ]\n}",
+      "raw": "{\n  \"title\": \"Python超入門 4\",\n  \"description\": \"わかりやすい 3\",\n  \"authors\": [\n    \"059bc3a3-e556-4d66-8bfd-250b46d0623a\"\n    ]\n}",
       "form": []
     },
     "tests": []
@@ -173,11 +173,11 @@
     "colId": "d6807397-75d2-4e75-9300-c4251b85c975",
     "containerId": "b383e5b0-6c33-41c4-b548-70b366858483",
     "name": "getBook",
-    "url": "{{BASE_URL}}/book-service/api/v1/books/cd947836-1fb7-45f8-9f4a-3afa1b3017cb",
+    "url": "{{BASE_URL}}/book-service/api/v1/books/d2b1cb5f-0da9-4078-ae6d-47d17bc28ff9",
     "method": "GET",
     "sortNum": 120000,
     "created": "2023-02-06T14:50:55.936Z",
-    "modified": "2023-02-09T03:09:45.105Z",
+    "modified": "2023-02-10T13:57:41.395Z",
     "headers": [],
     "params": [],
     "tests": []
@@ -187,11 +187,11 @@
     "colId": "d6807397-75d2-4e75-9300-c4251b85c975",
     "containerId": "b383e5b0-6c33-41c4-b548-70b366858483",
     "name": "updateBook",
-    "url": "{{BASE_URL}}/book-service/api/v1/books/c8ea203f-c5f3-456f-9327-ba76225b8aee",
+    "url": "{{BASE_URL}}/book-service/api/v1/books/d2b1cb5f-0da9-4078-ae6d-47d17bc28ff9",
     "method": "PATCH",
     "sortNum": 115000,
     "created": "2023-02-06T14:51:45.731Z",
-    "modified": "2023-02-06T15:09:12.295Z",
+    "modified": "2023-02-10T13:57:31.876Z",
     "headers": [],
     "params": [],
     "body": {
